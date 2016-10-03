@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  #  filebeat:
+  #    todo
+
+  zookeeper:
+    image: netflixoss/exhibitor:1.5.2
+    ports:
+      - 8080:8080
+    logging: { driver: none }
+
+  kafka:
+    image: confluent/kafka
+    ports:
+      - 9092:9092
+    logging: { driver: none }
+
+  logstash:
+    image: logstash:2.4
+    command: [-f, /etc/logstash/logstash.conf]
+    volumes:
+      - ./logstash.conf:/etc/logstash/logstash.conf
+
+  elasticsearch:
+    image: elasticsearch:2.4
+    ports:
+      - 9200:9200
+      - 9300:9300
+    logging: { driver: none }
