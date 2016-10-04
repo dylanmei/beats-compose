@@ -1,0 +1,11 @@
+# https://github.com/elastic/beats/blob/master/filebeat/filebeat.full.yml
+
+filebeat.prospectors:
+  - input_type: log
+    paths:
+      - /var/log/*.log
+
+output.kafka:
+  hosts: ["kafka:9092"]
+  topic: hello-messages
+  version: 0.10.0

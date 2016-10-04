@@ -1,8 +1,12 @@
 version: "2"
 
 services:
-  #  filebeat:
-  #    todo
+  filebeat:
+    image: prima/filebeat:5-alpha
+    command: [-e, -c, /etc/filebeat/filebeat.yml]
+    volumes:
+      - ./filebeat.yml:/etc/filebeat/filebeat.yml
+      - ./logs:/var/log
 
   zookeeper:
     image: netflixoss/exhibitor:1.5.2
